@@ -1,5 +1,5 @@
 import Atbash from './ciphers/Atbash'
-import ROT13 from './ciphers/Rot13'
+import ROT13 from './ciphers/ROT13'
 import Navbar from './components/Navbar'
 
 
