@@ -1,6 +1,6 @@
 import { useState } from "react"
 
-function Atbash() {
+export default function Atbash() {
   
   const [plaintext, setPlaintext] = useState("")
   const [encryptedText, setEncryptedText] = useState("")
@@ -10,16 +10,9 @@ function Atbash() {
 
     if(plaintext === "") return
 
-    const alphabet = "abcdefghijklmnopqrstuvwxyz"
-    let word = ""
-    for (let i = 0; i < plaintext.length; i++) {
-      const letter = plaintext[i]
-      const newIndex = alphabet.length - alphabet.indexOf(letter) -1 //+ 1
-      const newLetter = alphabet.charAt(newIndex % alphabet.length )
-      word = word + newLetter
-    };
+    const encryptedWord = encrypt(plaintext)
 
-    setEncryptedText(word)
+    setEncryptedText(encryptedWord)
   }
   return(
     <>
@@ -40,4 +33,15 @@ function Atbash() {
 }
 
 
-export default Atbash
+function encrypt(plaintext) {
+  const alphabet = "abcdefghijklmnopqrstuvwxyz"
+  let encryptedWord = ""
+  for (let i = 0; i < plaintext.length; i++) {
+    const letter = plaintext[i]
+    const newIndex = alphabet.length - alphabet.indexOf(letter) -1 //+ 1
+    const newLetter = alphabet.charAt(newIndex % alphabet.length )
+    encryptedWord = encryptedWord + newLetter
+  };
+
+  return encryptedWord
+}

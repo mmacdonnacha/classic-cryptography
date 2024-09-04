@@ -1,6 +1,6 @@
 import { useState } from "react"
 
-function ROT13() {
+export default function ROT13() {
   
   const [plaintext, setPlaintext] = useState("")
   const [encryptedText, setEncryptedText] = useState("")
@@ -10,16 +10,9 @@ function ROT13() {
 
     if(plaintext === "") return
 
-    const alphabet = "abcdefghijklmnopqrstuvwxyz"
-    let word = ""
-    for (let i = 0; i < plaintext.length; i++) {
-      const letter = plaintext[i]
-      const newIndex = alphabet.indexOf(letter) + 13
-      const newLetter = alphabet.charAt(newIndex % alphabet.length )
-      word = word + newLetter
-    };
+    const encryptedWord = encrypt(plaintext)
 
-    setEncryptedText(word)
+    setEncryptedText(encryptedWord)
   }
   return(
     <>
@@ -40,4 +33,15 @@ function ROT13() {
 }
 
 
-export default ROT13
+function encrypt(plaintext) {
+  const alphabet = "abcdefghijklmnopqrstuvwxyz"
+  let encryptedWord = ""
+  for (let i = 0; i < plaintext.length; i++) {
+    const letter = plaintext[i]
+    const newIndex = alphabet.indexOf(letter) + 13
+    const newLetter = alphabet.charAt(newIndex % alphabet.length )
+    encryptedWord = encryptedWord + newLetter
+  };
+
+  return encryptedWord
+}
